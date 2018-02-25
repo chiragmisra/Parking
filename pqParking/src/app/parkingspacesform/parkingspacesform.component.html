@@ -1,3 +1,88 @@
-<p>
-  parkingspacesform works!
-</p>
+<div class="container">
+  <h1>Parking Spaces Form</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Monday</label>
+      <textarea #monday="ngModel" numberCommaValidator [(ngModel)]="parkingSpaces.monday" numberCommaValidator class="form-control" name="monday" required></textarea>
+      <div *ngIf="monday.invalid && (monday.dirty || monday.touched)" class="alert alert-danger">
+        <div *ngIf="monday.errors.required">
+          Entries for Monday are required.
+        </div>
+        <div *ngIf="monday.errors.minlength">
+          Entries must be at least 4 characters long.
+        </div>
+        <div *ngIf="monday.errors.numberCommaValidator">
+          Entries must be comma separated numbers without spaces.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Tuesday</label>
+      <textarea #tuesday="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.tuesday" class="form-control" name="tuesday" required></textarea>
+      <div *ngIf="tuesday.invalid && (tuesday.dirty || tuesday.touched)" class="alert alert-danger">
+        <div *ngIf="tuesday.errors.required">
+          Entries for Tuesday are required.
+        </div>
+        <div *ngIf="tuesday.errors.minlength">
+          Entries must be at least 4 characters long.
+        </div>
+        <div *ngIf="tuesday.errors.numberCommaValidator">
+          Entries must be comma separated numbers without spaces.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Wednsesday</label>
+      <textarea #wednesday="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.wednesday" class="form-control" name="wednesday" required></textarea>
+      <div *ngIf="wednesday.invalid && (wednesday.dirty || wednesday.touched)" class="alert alert-danger">
+        <div *ngIf="wednesday.errors.required">
+          Entries for Wednesday are required.
+        </div>
+        <div *ngIf="wednesday.errors.minlength">
+          Entries must be at least 4 characters long.
+        </div>
+        <div *ngIf="wednesday.errors.numberCommaValidator">
+          Entries must be comma separated numbers without spaces.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Thursday</label>
+      <textarea #thursday="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.thursday" class="form-control" name="thursday" required></textarea>
+      <div *ngIf="thursday.invalid && (thursday.dirty || thursday.touched)" class="alert alert-danger">
+        <div *ngIf="thursday.errors.required">
+          Entries for Thursday are required.
+        </div>
+        <div *ngIf="thursday.errors.minlength">
+          Entries must be at least 4 characters long.
+        </div>
+        <div *ngIf="thursday.errors.numberCommaValidator">
+          Entries must be comma separated numbers without spaces.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Friday</label>
+      <textarea #friday="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.friday" class="form-control" name="friday" required></textarea>
+      <div *ngIf="friday.invalid && (friday.dirty || friday.touched)" class="alert alert-danger">
+        <div *ngIf="friday.errors.required">
+          Entries for Friday are required.
+        </div>
+        <div *ngIf="friday.errors.minlength">
+          Entries must be at least 4 characters long.
+        </div>
+        <div *ngIf="friday.errors.numberCommaValidator">
+          Entries must be comma separated numbers without spaces.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+  {{diagnostic}}
+</div>
