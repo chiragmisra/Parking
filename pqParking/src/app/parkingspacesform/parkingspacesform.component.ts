@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParkingSpaceModel } from '../parkingspacesform/parkingSpaceModel';
-import { FormGroup, FormsModule, ValidatorFn } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-parkingspacesform',
@@ -9,14 +11,31 @@ import { FormGroup, FormsModule, ValidatorFn } from '@angular/forms';
 })
 export class ParkingspacesformComponent implements OnInit {
 
-  private form: FormGroup;
+  constructor(private _http: HttpClient) { }
 
-  constructor() { }
+  parkingSpaces =  new ParkingSpaceModel("","","","","");
 
   ngOnInit() {
+    this._http.get("http://localhost:8080/api/display").subscribe(data=> {
+      console.log(data);
+      this.parkingSpaces = data as ParkingSpaceModel});
+    
   }
 
-  parkingSpaces =  new ParkingSpaceModel([""],"","","","");
+  
+
+  onSubmit() {    
+      console.log('in submit'+ JSON.stringify(this.parkingSpaces));
+      this._http.post("http://localhost:8080/api/store", 
+        this.parkingSpaces).subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log("Error occured");
+          }
+        );
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.parkingSpaces); }

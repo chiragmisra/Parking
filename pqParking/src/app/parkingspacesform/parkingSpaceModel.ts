@@ -1,7 +1,7 @@
 export class ParkingSpaceModel {  
 
     constructor(
-        public monday: [string],
+        public monday: string,
         public tuesday: string,
         public wednesday: string,
         public thursday: string,
