@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Parking Spaces Form</h1>
-  <form>
+  <form (ngSubmit)="onSubmit()" #parkingForm="ngForm">
     <div class="form-group">
       <label for="name">Monday</label>
       <textarea #monday="ngModel" numberCommaValidator [(ngModel)]="parkingSpaces.monday" numberCommaValidator class="form-control" name="monday" required></textarea>
@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled]="!parkingForm.form.valid">Submit</button>
 
   </form>
   {{diagnostic}}
