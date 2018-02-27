@@ -1,4 +1,52 @@
-<p>
-  parkinglistdisplay works!
-  {{responseJSON | json}}
-</p>
+<div class="container">
+    <h1>Parking Spaces Available</h1>
+    <h4>Week Commencing {{fromDate}}</h4>
+    <h4>Week Ending {{toDate}}</h4>
+</div>
+<table border="1">
+  <tr>
+    <th>Monday</th>
+    <th>Tueday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li *ngFor="let parkingSpaces of monday;">
+          {{parkingSpaces}}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngFor="let parkingSpaces of tuesday;">
+          {{parkingSpaces}}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngFor="let parkingSpaces of wednesday;">
+          {{parkingSpaces}}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngFor="let parkingSpaces of thursday;">
+          {{parkingSpaces}}
+        </li>
+      </ul>
+      </td>
+    <td>
+      <ul>
+        <li *ngFor="let parkingSpaces of friday;">
+          {{parkingSpaces}}
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+

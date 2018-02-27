@@ -13,7 +13,7 @@ export class ParkingspacesformComponent implements OnInit {
 
   constructor(private _http: HttpClient) { }
 
-  parkingSpaces =  new ParkingSpaceModel("","","","","");
+  parkingSpaces =  new ParkingSpaceModel("","","","","","","");
 
   ngOnInit() {
     this._http.get("http://localhost:8080/api/display").subscribe(data=> {
