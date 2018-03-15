@@ -1,9 +1,19 @@
-<div class="container">
-  <h1>Parking Spaces Form</h1>
+
+<h1>Add available parking spaces</h1>
+<div class="row justify-content-center">
+  <div class="col-md-10">
+      <div class="row">
+          <div class="form-group col-md-5">
+            <label for="fromDate">Week Starting</label>
+            <input name="fromDate" type="date" [(ngModel)]="parkingSpaces.fromDate" class="form-control" required>
+          </div>
+        </div>
   <form (ngSubmit)="onSubmit()" #parkingForm="ngForm">
     <div class="form-group">
       <label for="monday">Monday</label>
       <textarea #monday="ngModel" numberCommaValidator [(ngModel)]="parkingSpaces.monday" numberCommaValidator class="form-control" name="monday" required></textarea>
+        <small id="HelpBlock" class="form-text text-muted">Parking space numbers must be separated by commas, be actual space numbers and not be duplicates.
+        </small>
       <div *ngIf="monday.invalid && (monday.dirty || monday.touched)" class="alert alert-danger">
         <div *ngIf="monday.errors.required">
           Entries for Monday are required.
@@ -34,7 +44,7 @@
     </div>
 
     <div class="form-group">
-      <label for="wednesday">Wednsesday</label>
+      <label for="wednesday">Wednesday</label>
       <textarea #wednesday="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.wednesday" class="form-control" name="wednesday" required></textarea>
       <div *ngIf="wednesday.invalid && (wednesday.dirty || wednesday.touched)" class="alert alert-danger">
         <div *ngIf="wednesday.errors.required">
@@ -80,16 +90,36 @@
         </div>
       </div>
     </div>
+
     <div class="form-group">
-      <label for="fromDate">Week Starting</label>
-      <input name="fromDate" type="date" [(ngModel)]="parkingSpaces.fromDate" class="form-control" required>
-    </div>
-    <div class="form-group">
+        <label for="note">Note</label>
+        <textarea #note="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.note" class="form-control" name="note" required></textarea>
+        <div *ngIf="note.invalid && (note.dirty || note.touched)" class="alert alert-danger">
+          <div *ngIf="note.errors.required">
+            Entries for Notes are required.
+          </div>
+          <div *ngIf="note.errors.minlength">
+            Entries must be at least 4 characters long.
+          </div>
+          <div *ngIf="note.errors.numberCommaValidator">
+            Entries must be comma separated numbers without spaces.
+          </div>
+        </div>
+      </div>
+
+    <!-- <div class="form-group">
         <label for="toDate">Week Ending</label>
         <input name="toDate" type="date" [(ngModel)]="parkingSpaces.toDate" class="form-control" required>
+      </div> -->
+      <div class="row justify-content-between">
+        <div class="col-md-5">
+          <button type="submit" class="btn btn-primary" [disabled]="!parkingForm.form.valid" role="button">Add parking spaces</button>
+        </div>
+      <div class="col-md-2 text-right">
+        <a href="addparkingspaces">Clear all</a>
       </div>
-    <button type="submit" class="btn btn-success" [disabled]="!parkingForm.form.valid">Submit</button>
-
+    </div> 
   </form>
-  {{diagnostic}}
+ <p>{{diagnostic}}</p>
+  </div>
 </div>
