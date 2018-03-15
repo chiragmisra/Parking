@@ -23,7 +23,8 @@ export class ParkinglistdisplayComponent implements OnInit {
   ngOnInit() {
    this._http.get("http://localhost:8080/api/display").subscribe(data=> {
       let parkingSpaces = data as ParkingSpaceModel
-      this.fromDate = parkingSpaces.fromDate;
+      let date = new Date(parkingSpaces.fromDate);
+      this.fromDate = date.getDate().toString()+'/'+ date.getMonth().toString() +'/'+ date.getFullYear().toString();
       this.toDate = parkingSpaces.toDate;
       this.monday = parkingSpaces.monday.split(',');
       this.tuesday = parkingSpaces.tuesday.split(',');
