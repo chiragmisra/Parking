@@ -21,7 +21,7 @@ export class ParkinglistdisplayComponent implements OnInit {
   public friday: string[];
 
   ngOnInit() {
-   this._http.get("http://localhost:8080/api/display").subscribe(data=> {
+   this._http.get("http://10.241.17.112:8080/api/display").subscribe(data=> {
       let parkingSpaces = data as ParkingSpaceModel
       let date = new Date(parkingSpaces.fromDate);
       this.fromDate = date.getDate().toString()+'/'+ date.getMonth().toString() +'/'+ date.getFullYear().toString();
