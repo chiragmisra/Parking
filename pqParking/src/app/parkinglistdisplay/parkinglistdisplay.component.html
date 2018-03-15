@@ -1,49 +1,49 @@
-<div class="container">
-    <h1>Parking Spaces Available</h1>
-    <h4>Week Commencing {{fromDate}}</h4>
-    <h4>Week Ending {{toDate}}</h4>
+<div class="clearfix">
+    <h1>ProQuest Parking Availability <span class="float-right">W/C {{fromDate}}</span></h1>
 </div>
-<table border="1">
+<table class="table" border="1">
+  <thead>
   <tr>
-    <th>Monday</th>
-    <th>Tueday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
+    <th>M<span>onday</span></th>
+    <th>T<span>ueday</span></th>
+    <th>W<span>ednesday</span></th>
+    <th>T<span>hursday</span></th>
+    <th>F<span>riday</span></th>
   </tr>
+</thead>
   <tr>
     <td>
       <ul class="list-unstyled">
         <li *ngFor="let parkingSpaces of monday;">
-          {{parkingSpaces}}
+          <span>{{parkingSpaces}}</span>
         </li>
       </ul>
     </td>
     <td>
       <ul class="list-unstyled">
         <li *ngFor="let parkingSpaces of tuesday;">
-          {{parkingSpaces}}
+          <span>{{parkingSpaces}}</span>
         </li>
       </ul>
     </td>
     <td>
       <ul class="list-unstyled">
         <li *ngFor="let parkingSpaces of wednesday;">
-          {{parkingSpaces}}
+          <span>{{parkingSpaces}}</span>
         </li>
       </ul>
     </td>
     <td>
       <ul class="list-unstyled">
         <li *ngFor="let parkingSpaces of thursday;">
-          {{parkingSpaces}}
+          <span>{{parkingSpaces}}</span>
         </li>
       </ul>
       </td>
     <td>
       <ul class="list-unstyled">
         <li *ngFor="let parkingSpaces of friday;">
-          {{parkingSpaces}}
+            <span>{{parkingSpaces}}</span>
         </li>
       </ul>
     </td>
