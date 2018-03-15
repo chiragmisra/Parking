@@ -19,6 +19,7 @@ export class ParkinglistdisplayComponent implements OnInit {
   public wednesday: string[];
   public thursday: string[];
   public friday: string[];
+  public note: string;
 
   ngOnInit() {
    this._http.get("http://10.241.17.112:8080/api/display").subscribe(data=> {
@@ -31,6 +32,7 @@ export class ParkinglistdisplayComponent implements OnInit {
       this.wednesday = parkingSpaces.wednesday.split(',');
       this.thursday = parkingSpaces.thursday.split(',');
       this.friday = parkingSpaces.friday.split(',');
+      this.note = parkingSpaces.note;
     });
   }
 

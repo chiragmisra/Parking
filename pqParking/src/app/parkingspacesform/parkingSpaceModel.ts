@@ -7,6 +7,7 @@ export class ParkingSpaceModel {
         public thursday: string,
         public friday: string,
         public fromDate: string,
-        public toDate: string
+        public toDate: string,
+        public note: string
     ){}
 }

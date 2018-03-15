@@ -97,7 +97,7 @@
 
     <div class="form-group">
         <label for="note">Note</label>
-        <textarea #note="ngModel" numberCommaValidator type="text" [(ngModel)]="parkingSpaces.note" class="form-control" name="note" required></textarea>
+        <textarea #note="ngModel" type="text" [(ngModel)]="parkingSpaces.note" class="form-control" name="note" required></textarea>
         <div *ngIf="note.invalid && (note.dirty || note.touched)" class="alert alert-danger">
           <div *ngIf="note.errors.required">
             Entries for Notes are required.
