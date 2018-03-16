@@ -6,6 +6,10 @@
     margin-bottom:20px;
     @media (max-width: 575px) {
         padding:0;
+        h1{
+            float:none!important;
+            padding: 10px 0 0px 20px;
+        }
     }
 }
 #header img{
@@ -23,7 +27,11 @@
     margin-top:20px;
     @media (max-width: 575px) { 
         font-size:20px;
-        margin:10px 10px 0 0;
+        margin:0px 0px 10px 10px;
+        float:none !important;
+        clear:both;
+        display:inline-block;
+        padding:4px 10px;
     }
 }
 table{
@@ -49,7 +57,7 @@ table{
         width:20%;
         
     }
-    th span{
+    th .day{
         @media (max-width: 575px) { 
             display:none;
             }    
