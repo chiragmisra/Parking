@@ -21,6 +21,12 @@ export class ParkinglistdisplayComponent implements OnInit {
   public friday: string[];
   public note: string;
 
+  public monDate: string;
+  public tueDate: string;
+  public wedDate: string;
+  public thuDate: string;
+  public friDate: string;
+
   ngOnInit() {
    this._http.get("http://10.241.17.112:8080/api/display").subscribe(data=> {
       let parkingSpaces = data as ParkingSpaceModel
@@ -33,6 +39,16 @@ export class ParkinglistdisplayComponent implements OnInit {
       this.thursday = parkingSpaces.thursday.split(',').sort(this.sortAlphaNum);
       this.friday = parkingSpaces.friday.split(',').sort(this.sortAlphaNum);
       this.note = parkingSpaces.note;
+      let mon = this.getMondayOfCurrentWeek(new Date());
+      this.monDate =mon.getDate().toString() + '/'+ (mon.getMonth()+1);
+      let tue = this.getTuesdayOfCurrentWeek(new Date());
+      this.tueDate =tue.getDate().toString() + '/'+ (tue.getMonth()+1);
+      let wed = this.getWednesdayOfCurrentWeek(new Date());
+      this.wedDate =wed.getDate().toString() + '/'+ (wed.getMonth()+1);
+      let thu = this.getThursdayOfCurrentWeek(new Date());
+      this.thuDate =thu.getDate().toString() + '/'+ (thu.getMonth()+1);
+      let fri = this.getFridayOfCurrentWeek(new Date());
+      this.friDate =fri.getDate().toString() + '/'+ (fri.getMonth()+1);
     });
   }
 
@@ -49,5 +65,30 @@ export class ParkinglistdisplayComponent implements OnInit {
     } else {
         return aA > bA ? 1 : -1;
     }
+  }
+
+  getMondayOfCurrentWeek(d) {
+      var day = d.getDay();
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0?-6:1)-day );
+  }
+
+  getTuesdayOfCurrentWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0?-6:2)-day );
+  }
+
+  getWednesdayOfCurrentWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0?-6:3)-day );
+  }
+  
+  getThursdayOfCurrentWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0?-6:4)-day );
+  }
+
+  getFridayOfCurrentWeek(d) {
+    var day = d.getDay();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + (day == 0?-6:5)-day );
   }
 }
