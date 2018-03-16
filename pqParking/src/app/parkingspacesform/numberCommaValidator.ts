@@ -18,7 +18,7 @@ import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators } fr
 
     numberCommaValidator(): ValidatorFn {
         return (control: AbstractControl): {[key: string]: any} => {
-          const forbidden = new RegExp('^(\[0-9]+(,\[0-9]+)*)?$').test(control.value);
+          const forbidden = new RegExp('^(\[0-9 (AaPpMm)]+(,\[0-9 (AaPpMm)]+)*)?$').test(control.value);
           if(forbidden) {
               return null;
           } else {

@@ -27,17 +27,27 @@ export class ParkinglistdisplayComponent implements OnInit {
       let date = new Date(parkingSpaces.fromDate);
       this.fromDate = date.getDate().toString()+'/'+ (date.getMonth()+1) +'/'+ date.getFullYear().toString();
       this.toDate = parkingSpaces.toDate;     
-      this.monday = parkingSpaces.monday.split(',').sort(this.sortNumber);
-      this.tuesday = parkingSpaces.tuesday.split(',').sort(this.sortNumber);
-      this.wednesday = parkingSpaces.wednesday.split(',').sort(this.sortNumber);
-      this.thursday = parkingSpaces.thursday.split(',').sort(this.sortNumber);
-      this.friday = parkingSpaces.friday.split(',').sort(this.sortNumber);
+      this.monday = parkingSpaces.monday.split(',').sort(this.sortAlphaNum);
+      this.tuesday = parkingSpaces.tuesday.split(',').sort(this.sortAlphaNum);
+      this.wednesday = parkingSpaces.wednesday.split(',').sort(this.sortAlphaNum);
+      this.thursday = parkingSpaces.thursday.split(',').sort(this.sortAlphaNum);
+      this.friday = parkingSpaces.friday.split(',').sort(this.sortAlphaNum);
       this.note = parkingSpaces.note;
     });
   }
 
-  sortNumber(a,b) {
-    return a - b;
+  
+  sortAlphaNum(a,b) {
+    let reA = /[^a-zA-Z]/g;
+    let reN = /[^0-9]/g;
+    let aA = a.replace(reA, "");
+    let bA = b.replace(reA, "");
+    if(aA === bA) {
+        let aN = parseInt(a.replace(reN, ""), 10);
+        let bN = parseInt(b.replace(reN, ""), 10);
+        return aN === bN ? 0 : aN > bN ? 1 : -1;
+    } else {
+        return aA > bA ? 1 : -1;
+    }
   }
-
 }
