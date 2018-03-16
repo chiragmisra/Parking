@@ -25,15 +25,19 @@ export class ParkinglistdisplayComponent implements OnInit {
    this._http.get("http://10.241.17.112:8080/api/display").subscribe(data=> {
       let parkingSpaces = data as ParkingSpaceModel
       let date = new Date(parkingSpaces.fromDate);
-      this.fromDate = date.getDate().toString()+'/'+ date.getMonth().toString() +'/'+ date.getFullYear().toString();
-      this.toDate = parkingSpaces.toDate;
-      this.monday = parkingSpaces.monday.split(',');
-      this.tuesday = parkingSpaces.tuesday.split(',');
-      this.wednesday = parkingSpaces.wednesday.split(',');
-      this.thursday = parkingSpaces.thursday.split(',');
-      this.friday = parkingSpaces.friday.split(',');
+      this.fromDate = date.getDate().toString()+'/'+ (date.getMonth()+1) +'/'+ date.getFullYear().toString();
+      this.toDate = parkingSpaces.toDate;     
+      this.monday = parkingSpaces.monday.split(',').sort(this.sortNumber);
+      this.tuesday = parkingSpaces.tuesday.split(',').sort(this.sortNumber);
+      this.wednesday = parkingSpaces.wednesday.split(',').sort(this.sortNumber);
+      this.thursday = parkingSpaces.thursday.split(',').sort(this.sortNumber);
+      this.friday = parkingSpaces.friday.split(',').sort(this.sortNumber);
       this.note = parkingSpaces.note;
     });
+  }
+
+  sortNumber(a,b) {
+    return a - b;
   }
 
 }
