@@ -16,7 +16,7 @@ export class ParkingspacesformComponent implements OnInit {
   parkingSpaces =  new ParkingSpaceModel("","","","","","","","");
 
   ngOnInit() {
-    this._http.get("http://10.241.17.112:8080/api/display").subscribe(data=> {
+    this._http.get("http://cambridgeparkingapp-878242580.us-east-1.elb.amazonaws.com:8080/api/display").subscribe(data=> {
       console.log(data);
       this.parkingSpaces = data as ParkingSpaceModel});
     
@@ -26,7 +26,7 @@ export class ParkingspacesformComponent implements OnInit {
 
   onSubmit() {    
       console.log('in submit'+ JSON.stringify(this.parkingSpaces));
-      this._http.post("http://10.241.17.112:8080/api/store", 
+      this._http.post("http://cambridgeparkingapp-878242580.us-east-1.elb.amazonaws.com:8080/api/store", 
         this.parkingSpaces).subscribe(
           res => {
             console.log(res);
