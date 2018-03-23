@@ -27,18 +27,52 @@ export class ParkinglistdisplayComponent implements OnInit {
   public thuDate: string;
   public friDate: string;
 
+  public holiday: string[] = ["B","a","n","k","-","H","o","l","i","d","a","y"];
+
   ngOnInit() {
    this._http.get("http://cambridgeparkingapp-878242580.us-east-1.elb.amazonaws.com:8080/api/display").subscribe(data=> {
       let parkingSpaces = data as ParkingSpaceModel
       let date = new Date(parkingSpaces.fromDate);
       this.fromDate = date.getDate().toString()+'/'+ (date.getMonth()+1) +'/'+ date.getFullYear().toString();
-      this.toDate = parkingSpaces.toDate;     
-      this.monday = parkingSpaces.monday.split(',').sort(this.sortAlphaNum);
-      this.tuesday = parkingSpaces.tuesday.split(',').sort(this.sortAlphaNum);
-      this.wednesday = parkingSpaces.wednesday.split(',').sort(this.sortAlphaNum);
-      this.thursday = parkingSpaces.thursday.split(',').sort(this.sortAlphaNum);
-      this.friday = parkingSpaces.friday.split(',').sort(this.sortAlphaNum);
+      this.toDate = parkingSpaces.toDate;
+      
+      let monSpaces = parkingSpaces.monday.split(',').sort(this.sortAlphaNum);
+      if (monSpaces.length === 1 && monSpaces[0] === "0") { 
+        this.monday = this.holiday;
+      } else {
+        this.monday = monSpaces;
+      }
+
+      let tueSpaces = parkingSpaces.tuesday.split(',').sort(this.sortAlphaNum);
+      if (tueSpaces.length === 1 && tueSpaces[0] === "0") { 
+        this.tuesday = this.holiday;
+      } else {
+        this.tuesday = tueSpaces;
+      }
+      
+      let wedSpaces = parkingSpaces.wednesday.split(',').sort(this.sortAlphaNum);
+      if (wedSpaces.length === 1 && wedSpaces[0] === "0") { 
+        this.wednesday = this.holiday;
+      } else {
+        this.wednesday = wedSpaces;
+      }
+      
+      let thuSpaces =parkingSpaces.thursday.split(',').sort(this.sortAlphaNum);
+      if (thuSpaces.length === 1 && thuSpaces[0] === "0") { 
+        this.thursday = this.holiday;
+      } else {
+        this.thursday = thuSpaces;
+      }
+      
+      let friSpaces = parkingSpaces.friday.split(',').sort(this.sortAlphaNum);
+      if (friSpaces.length === 1 && friSpaces[0] === "0") { 
+        this.friday = this.holiday;
+      } else {
+        this.friday = friSpaces;
+      } 
+      
       this.note = parkingSpaces.note;
+      
       let mon = this.getMondayOfCurrentWeek(new Date());
       this.monDate =mon.getDate().toString() + '/'+ (mon.getMonth()+1);
       let tue = this.getTuesdayOfCurrentWeek(new Date());
